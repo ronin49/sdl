@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
         // Render stuff here
 
         std::cout << rand() << std::endl;
-        SDL_Rect texr; texr.x = rand() % 100; texr.y = rand() % 100; texr.w = 50; texr.h = 50;
+        SDL_Rect texr; texr.x = rand() % 1000; texr.y = rand() % 1000; texr.w = 50; texr.h = 50;
         SDL_RenderCopy(renderer, text, NULL, &texr);
         SDL_RenderPresent(renderer);
     }
