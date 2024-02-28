@@ -29,7 +29,7 @@ void drawField() {
 
 int main(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
-    SDL_Window* window = SDL_CreateWindow("SDL Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("SDL Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, CELL_SIZE*8, CELL_SIZE*8, SDL_WINDOW_SHOWN);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_Event event;
     bool quit = false;
@@ -73,13 +73,14 @@ int main(int argc, char* argv[]) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT)
                 quit = true;
-            if (event.type == SDL_MOUSEBUTTONDOWN)
-                quit = true;
+            if (event.type == SDL_MOUSEBUTTONDOWN) {
+                int x, y;
+                SDL_GetMouseState(&x, &y);
+                std::cout << x << ' ' << y << std::endl;
+            }
         }
         SDL_RenderClear(renderer);
         // Render stuff here
-
-        std::cout << rand() << std::endl;
         drawField();
         SDL_RenderPresent(renderer);
     }
